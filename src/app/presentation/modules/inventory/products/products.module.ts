@@ -14,7 +14,6 @@ import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { FileUploadModule } from 'primeng/fileupload';
 import { TableModule } from 'primeng/table';
-
 import { ProductsRoutingModule } from './products-routing.module';
 import { ProductsComponent } from './pages/products/products.component';
 @NgModule({

@@ -2,15 +2,16 @@ import { NgModule } from '@angular/core';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { NotfoundComponent } from './demo/components/notfound/notfound.component';
-import { ProductService } from './demo/service/product.service';
-import { CountryService } from './demo/service/country.service';
-import { CustomerService } from './demo/service/customer.service';
-import { EventService } from './demo/service/event.service';
-import { IconService } from './demo/service/icon.service';
-import { NodeService } from './demo/service/node.service';
-import { PhotoService } from './demo/service/photo.service';
+import { NotfoundComponent } from './presentation/core/components/notfound/notfound.component';
+
 import { AppLayoutModule } from '@Presentation/layout/app.layout.module';
+import { CountryService } from '@Presentation/core/services/country.service';
+import { CustomerService } from '@Presentation/core/services/customer.service';
+import { EventService } from '@Presentation/core/services/event.service';
+import { IconService } from '@Presentation/core/services/icon.service';
+import { NodeService } from '@Presentation/core/services/node.service';
+import { PhotoService } from '@Presentation/core/services/photo.service';
+import { ProductService } from '@Presentation/core/services/product.service';
 
 @NgModule({
     declarations: [

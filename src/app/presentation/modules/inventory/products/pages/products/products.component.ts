@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { Product } from '@Domain/model/Product.model';
-import { ProductService } from 'src/app/demo/service/product.service';
+import { ProductService } from '@Presentation/core/services/product.service';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -10,7 +10,7 @@ import { ProductService } from 'src/app/demo/service/product.service';
   providers: [MessageService]
 
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit,OnDestroy {
   productDialog: boolean = false;
   deleteProductDialog: boolean = false;
   deleteProductsDialog: boolean = false;
@@ -21,9 +21,15 @@ export class ProductsComponent implements OnInit {
   cols: any[] = [];
   statuses: any[] = [];
   rowsPerPageOptions = [5, 10, 20];
+  class!:string
   constructor(private productService: ProductService, private messageService: MessageService) { }
+    ngOnDestroy(): void {
+        this.class="fadeout animation-duration-500"
+
+    }
 
   ngOnInit() {
+    this.class="fadein animation-duration-500"
       this.productService.getProducts().then(data => this.products = data);
 
       this.cols = [
@@ -35,9 +41,9 @@ export class ProductsComponent implements OnInit {
       ];
 
       this.statuses = [
-          { label: 'INSTOCK', value: 'instock' },
-          { label: 'LOWSTOCK', value: 'lowstock' },
-          { label: 'OUTOFSTOCK', value: 'outofstock' }
+          { label: 'IN STOCK', value: 'in stock' },
+          { label: 'LOW STOCK', value: 'low stock' },
+          { label: 'OUT OF STOCK', value: 'out of stock' }
       ];
   }
 

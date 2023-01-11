@@ -1,0 +1,349 @@
+<div class="grid" [ngClass]="class">
+    <div class="col-12">
+        <div class="card px-6 py-6">
+            <p-toast></p-toast>
+            <p-toolbar styleClass="mb-4">
+                <ng-template pTemplate="left">
+                    <div class="my-2">
+                        <button
+                            pButton
+                            pRipple
+                            label="New"
+                            icon="pi pi-plus"
+                            class="p-button-success mr-2"
+                            (click)="openNew()"
+                        ></button>
+                        <button
+                            pButton
+                            pRipple
+                            label="Delete"
+                            icon="pi pi-trash"
+                            class="p-button-danger"
+                            (click)="deleteSelectedProducts()"
+                            [disabled]="
+                                !selectedProducts || !selectedProducts.length
+                            "
+                        ></button>
+                    </div>
+                </ng-template>
+            </p-toolbar>
+            <p-table
+                #dt
+                [value]="products"
+                [columns]="cols"
+                responsiveLayout="scroll"
+                [rows]="10"
+                [globalFilterFields]="[
+                    'name',
+                    'country.name',
+                    'representative.name',
+                    'status'
+                ]"
+                [rows]="10"
+                [paginator]="true"
+                [rowsPerPageOptions]="[10, 20, 30]"
+                [showCurrentPageReport]="true"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                [(selection)]="selectedProducts"
+                selectionMode="multiple"
+                [rowHover]="true"
+                dataKey="id"
+                [scrollable]="true"
+                scrollHeight="500px"
+                [virtualScroll]="true"
+                [virtualScrollItemSize]="46"
+            >
+                <ng-template pTemplate="caption">
+                    <div
+                        class="flex flex-column md:flex-row md:justify-content-between md:align-items-center"
+                    >
+                        <h5 class="m-0">Administracion de Usuarios</h5>
+                        <span class="block mt-2 md:mt-0 p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input
+                                pInputText
+                                type="text"
+                                (input)="onGlobalFilter(dt, $event)"
+                                placeholder="Buscar..."
+                                class="w-full sm:w-auto"
+                            />
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+                        <th>Image</th>
+                        <th pSortableColumn="name">
+                            Nombre <p-sortIcon field="name"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="price">
+                            Correo <p-sortIcon field="price"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="category">
+                            Status <p-sortIcon field="category"></p-sortIcon>
+                        </th>
+
+                        <th pSortableColumn="Role">
+                            Role
+                            <p-sortIcon field="Role"></p-sortIcon>
+                        </th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-product>
+                    <tr>
+                        <td>
+                            <p-tableCheckbox
+                                [value]="product"
+                            ></p-tableCheckbox>
+                        </td>
+                        <td style="width: 14%; min-width: 10rem">
+                            <span class="p-column-title">Image</span>
+                            <img
+                                [src]="
+                                    'assets/demo/images/product/' +
+                                    product.image
+                                "
+                                [alt]="product.name"
+                                width="100"
+                                class="shadow-4"
+                            />
+                        </td>
+                        <td style="width: 14%; min-width: 10rem">
+                            <span class="p-column-title">Name</span>
+                            {{ product.name }}
+                        </td>
+
+                        <td style="width: 14%; min-width: 10rem">
+                            <span class="p-column-title">Category</span>
+                            {{ product.category }}
+                        </td>
+
+                        <td style="width: 14%; min-width: 10rem">
+                            <span class="p-column-title">Role</span>
+                            <span
+                                [class]="
+                                    'product-badge status-' +
+                                    (product.inventoryStatus
+                                        ? product.inventoryStatus.toLowerCase()
+                                        : '')
+                                "
+                                >{{ product.inventoryStatus }}</span
+                            >
+
+                        </td> <td style="width: 14%; min-width: 10rem">
+                            <span class="p-column-title">Role</span>
+                            <span
+                                [class]="
+                                    'product-badge status-' +
+                                    (product.inventoryStatus
+                                        ? product.inventoryStatus.toLowerCase()
+                                        : '')
+                                "
+                                >{{ product.inventoryStatus }}</span
+                            >
+
+                        </td>
+                        <td>
+                            <div class="flex">
+                                <button
+                                    pButton
+                                    pRipple
+                                    icon="pi pi-pencil"
+                                    class="p-button-rounded p-button-success mr-2"
+                                    (click)="editProduct(product)"
+                                ></button>
+                                <button
+                                    pButton
+                                    pRipple
+                                    icon="pi pi-trash"
+                                    class="p-button-rounded p-button-warning"
+                                    (click)="deleteProduct(product)"
+                                ></button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <!-- FormCreate -->
+        <p-dialog
+            [(visible)]="productDialog"
+            [style]="{ width: '450px' }"
+            header="Usuario"
+            [modal]="true"
+            class="p-fluid"
+        >
+
+            <ng-template pTemplate="content">
+                <img
+                    [src]="'assets/demo/images/product/' + product.image"
+                    [alt]="product.image"
+                    width="150"
+                    class="mt-0 mx-auto mb-5 block shadow-2"
+                    *ngIf="product.image"
+                />
+                <div class="field">
+                    <label for="fullname">Nombre</label>
+                    <input
+                        type="text"
+                        pInputText
+                        id="fullname"
+                        [(ngModel)]="user.fullname"
+                        name="fullname"
+                        required
+                        autofocus
+                        [ngClass]="{
+                            'ng-invalid ng-dirty': submitted && !user.fullname
+                        }"
+                    />
+                    <small
+                        class="ng-dirty ng-invalid"
+                        *ngIf="submitted && !user.fullname"
+                        >El nombre es Requerido.</small
+                    >
+                </div>
+                <div class="field">
+                    <label for="description">email</label>
+                    <input
+                        id="email"
+                        pInputText
+                        [(ngModel)]="user.email"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label for="status">Estatus del Usuario</label>
+                    <p-dropdown
+                        id="status"
+                        [options]="statuses"
+                        optionLabel="label"
+                        [(ngModel)]="user.activationStatus"
+                        placeholder="Seleccione un Estatus"
+                    >
+                        <ng-template pTemplate="selectedItem">
+                            <span
+                                *ngIf="user && user.activationStatus"
+                                [class]="
+                                    'product-badge status-' +
+                                    user.activationStatus.value.toLowerCase()
+                                "
+                                >{{ user.activationStatus.value }}</span
+                            >
+                        </ng-template>
+                        <ng-template let-status pTemplate="status">
+                            <span
+                                [class]="
+                                    'product-badge status-' +
+                                    status.value.toLowerCase()
+                                "
+                                >{{ status.label }}</span
+                            >
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+                <div class="formgrid grid">
+                    <div class="field col">
+                        <label for="price">Numero de telefono</label>
+                        <p-inputNumber
+                            id="price"
+                            [(ngModel)]="user.phoneNum"
+                            name="phoneNum"
+                        ></p-inputNumber>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="footer">
+                <button
+                    pButton
+                    pRipple
+                    label="Cancel"
+                    icon="pi pi-times"
+                    class="p-button-text"
+                    (click)="hideDialog()"
+                ></button>
+                <button
+                    pButton
+                    pRipple
+                    label="Save"
+                    icon="pi pi-check"
+                    class="p-button-text"
+                    (click)="saveProduct()"
+                ></button>
+            </ng-template>
+        </p-dialog>
+        <p-dialog
+            [(visible)]="deleteProductDialog"
+            header="Confirm"
+            [modal]="true"
+            [style]="{ width: '450px' }"
+        >
+            <div class="flex align-items-center justify-content-center">
+                <i
+                    class="pi pi-exclamation-triangle mr-3"
+                    style="font-size: 2rem"
+                ></i>
+                <span *ngIf="user"
+                    >Estas seguro que deseas elminar al usuario <b>{{ user.fullname }}</b
+                    >?</span
+                >
+            </div>
+            <ng-template pTemplate="footer">
+                <button
+                    pButton
+                    pRipple
+                    icon="pi pi-times"
+                    class="p-button-text"
+                    label="No"
+                    (click)="deleteProductDialog = false"
+                ></button>
+                <button
+                    pButton
+                    pRipple
+                    icon="pi pi-check"
+                    class="p-button-text"
+                    label="Yes"
+                    (click)="confirmDelete()"
+                ></button>
+            </ng-template>
+        </p-dialog>
+
+        <p-dialog
+            [(visible)]="deleteProductsDialog"
+            header="Confirm"
+            [modal]="true"
+            [style]="{ width: '450px' }"
+        >
+            <div class="flex align-items-center justify-content-center">
+                <i
+                    class="pi pi-exclamation-triangle mr-3"
+                    style="font-size: 2rem"
+                ></i>
+                <span>Are you sure you want to delete selected products?</span>
+            </div>
+            <ng-template pTemplate="footer">
+                <button
+                    pButton
+                    pRipple
+                    icon="pi pi-times"
+                    class="p-button-text"
+                    label="No"
+                    (click)="deleteProductsDialog = false"
+                ></button>
+                <button
+                    pButton
+                    pRipple
+                    icon="pi pi-check"
+                    class="p-button-text"
+                    label="Yes"
+                    (click)="confirmDeleteSelected()"
+                ></button>
+            </ng-template>
+        </p-dialog>
+    </div>
+</div>

@@ -1,6 +1,6 @@
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { NotfoundComponent } from './demo/components/notfound/notfound.component';
+import { NotfoundComponent } from './presentation/core/components/notfound/notfound.component';
 import { AppLayoutComponent } from '@Presentation/layout/app.layout.component';
 
 @NgModule({
@@ -15,8 +15,8 @@ import { AppLayoutComponent } from '@Presentation/layout/app.layout.component';
                             path: '',
                             loadChildren: () =>
                                 import(
-                                    './demo/components/dashboard/dashboard.module'
-                                ).then((m) => m.DashboardModule),
+                                    '@Presentation/modules/home/'
+                                ).then((m) => m.HomeModule),
                         },
                         {
                             path: 'inventory',
@@ -24,6 +24,20 @@ import { AppLayoutComponent } from '@Presentation/layout/app.layout.component';
                                 import(
                                     '@Presentation/modules/inventory/products'
                                 ).then((m) => m.ProductsModule),
+                        },
+                        {
+                            path: 'AccessControl',
+                            loadChildren: () =>
+                                import(
+                                    '@Presentation/modules/admin/access-role'
+                                ).then((m) => m.AccessRoleModule),
+                        },
+                        {
+                            path: 'Control',
+                            loadChildren: () =>
+                                import(
+                                    '@Presentation/modules/admin/user'
+                                ).then((m) => m.UserModule),
                         },
                     ],
                 },

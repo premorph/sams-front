@@ -17,10 +17,11 @@ import { AppFooterComponent } from './components/app.footer.component';
 import { AppTopBarComponent } from './components/app.topbar.component';
 import { AppMenuitemComponent } from './components/app.menuitem.component';
 import { AppConfigModule } from './config/config.module';
+import { AnimateModule } from 'primeng/animate';
 
 @NgModule({
     declarations: [
-        
+
         AppLayoutComponent,
     ],
     imports: [
@@ -41,6 +42,7 @@ import { AppConfigModule } from './config/config.module';
         AppFooterComponent,
         AppMenuComponent,
         AppSidebarComponent,
+        AnimateModule
     ],
     exports: [AppLayoutComponent]
 })

@@ -1,15 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Image } from '../../../domain/model/image';
 
 @Injectable()
-export class CountryService {
+export class PhotoService {
 
     constructor(private http: HttpClient) { }
 
-    getCountries() {
-        return this.http.get<any>('assets/demo/data/countries.json')
+    getImages() {
+        return this.http.get<any>('assets/demo/data/photos.json')
             .toPromise()
-            .then(res => res.data as any[])
+            .then(res => res.data as Image[])
             .then(data => data);
     }
 }
