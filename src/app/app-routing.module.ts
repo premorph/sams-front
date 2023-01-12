@@ -41,7 +41,7 @@ import { AppLayoutComponent } from '@Presentation/layout/app.layout.component';
                         },
                     ],
                 },
-
+                {path:'Oauth',loadChildren:()=>import('@Presentation/modules/auth').then(m=>m.AuthModule)},
                 { path: 'notfound', component: NotfoundComponent },
                 { path: '**', redirectTo: '/notfound' },
             ],

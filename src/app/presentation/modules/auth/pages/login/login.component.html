@@ -1,1 +1,96 @@
-<p>login works!</p>
+
+<div
+    class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden"
+>
+<p-toast></p-toast>
+    <div class="flex flex-column align-items-center justify-content-center">
+        <img
+            src="assets/layout/images/{{
+                layoutService.config.colorScheme === 'light'
+                    ? 'logo-dark'
+                    : 'logo-white'
+            }}.svg"
+            alt="Sakai logo"
+            class="mb-5 w-6rem flex-shrink-0"
+        />
+        <div
+            style="
+                border-radius: 56px;
+                padding: 0.3rem;
+                background: linear-gradient(
+                    180deg,
+                    var(--primary-color) 10%,
+                    rgba(14, 121, 209, 0) 30%
+                );
+            "
+        >
+            <div
+                class="w-full surface-card py-8 px-5 sm:px-8"
+                style="border-radius: 53px"
+            >
+                <div class="text-center mb-5">
+                    <div class="text-900 text-3xl font-medium mb-3">
+                        Bienvenido!
+                    </div>
+                    <span class="text-600 font-medium"
+                        >Inicie sesión para continuar</span
+                    >
+                </div>
+                <form [formGroup]="form" (ngSubmit)="login()" novalidate>
+                    <div>
+                        <label
+                            for="email1"
+                            class="block text-900 text-xl font-medium mb-2"
+                            >Correo Electronico</label
+                        >
+                        <input
+                            id="email1"
+                            name="email"
+                            type="email"
+                            formControlName="email"
+                            placeholder="Correo electronico"
+                            pInputText
+                            class="w-full md:w-30rem mb-5"
+                            style="padding: 1rem"
+                            required
+                        />
+                        <div *ngIf="!email.valid && (email.dirty ||email.touched) ">
+                            <div [hidden]="!email.errors.pattern">
+                              Only characters are allowed
+                            </div>
+                            </div>
+                        <label
+                            for="password1"
+                            class="block text-900 font-medium text-xl mb-2"
+                            >Contraseña</label
+                        >
+                        <p-password
+                            id="password1"
+                            formControlName="password"
+                            name="password"
+                            placeholder="Contraseña"
+                            styleClass="mb-5"
+                            inputStyleClass="w-full p-3 md:w-30rem"
+                            required
+                        ></p-password>
+                        <div
+                            class="flex align-items-center justify-content-between mb-5 gap-5"
+                        >
+                            <a
+                                class="font-medium no-underline ml-2 text-right cursor-pointer"
+                                style="color: var(--primary-color)"
+                                >Forgot password?</a
+                            >
+                        </div>
+                        <button
+                            pButton
+                            pRipple
+                            label="Sign In"
+                            class="w-full p-3 text-xl"
+                        ></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,7 @@
 import { UserModel } from '@Domain/model/user.model';
 import { Mapper } from '@Base/utils/mapper';
 import { UserEntity } from '../entities/user-entity';
+
 export class UserImplementationRepositoryMapper extends Mapper<UserEntity,UserModel>{
 override mapFrom(param: UserEntity): UserModel {
   return {

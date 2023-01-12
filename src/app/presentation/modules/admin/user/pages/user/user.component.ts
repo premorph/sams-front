@@ -119,11 +119,11 @@ export class UserComponent implements OnInit, OnDestroy {
 
     saveProduct() {
         this.submitted = true;
-        
 
 
 
-        
+
+
         if (this.user.fullname?.trim()) {
             if (this.user.id) {
                 // @ts-ignore
