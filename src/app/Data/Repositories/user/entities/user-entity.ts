@@ -3,8 +3,9 @@ export interface UserEntity{
   fullname:string;
   email:string;
   phoneNum:string;
+  password:string;
   profilePicture:string;
-  activationStatus:activationState;
+  activationStatus:activationState | any;
 }
 
 interface activationState{

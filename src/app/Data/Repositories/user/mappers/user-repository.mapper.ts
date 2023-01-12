@@ -6,17 +6,20 @@ override mapFrom(param: UserEntity): UserModel {
   return {
     id:param.id,
     fullname:param.fullname,
-    username:param.username,
+    email:param.email,
+    password:param.password,
     phoneNum:param.phoneNum,
     profilePicture:param.profilePicture,
     activationStatus:param.activationStatus
+
   }
 }
   override mapTo(param: UserModel): UserEntity {
     return {
       id:param.id,
       fullname:param.fullname,
-      username:param.username,
+      email:param.email,
+      password:param.password,
       phoneNum:param.phoneNum,
       profilePicture:param.profilePicture,
       activationStatus:param.activationStatus

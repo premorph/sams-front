@@ -1,8 +1,8 @@
 export interface UserModel{
   id:string;
   fullname:string;
-  username:string;
-  email?:string
+  email:string;
+  password:string;
   phoneNum:string;
   createdAt?:string
   profilePicture:string;

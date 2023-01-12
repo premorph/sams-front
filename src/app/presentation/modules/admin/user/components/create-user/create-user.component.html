@@ -1,0 +1,121 @@
+ <ng-template pTemplate="content">
+    <img
+        [src]=user.profilePicture
+        [alt]="user.profilePicture"
+        width="150"
+        class="mt-0 mx-auto mb-5 block shadow-2"
+        *ngIf="user.profilePicture"
+    />
+    <div class="field">
+        <label for="fullname">Nombre</label>
+        <input
+            type="text"
+            pInputText
+            id="fullname"
+            [(ngModel)]="user.fullname"
+            name="fullname"
+            required
+            autofocus
+            [ngClass]="{
+                'ng-invalid ng-dirty': submitted && !user.fullname
+            }"
+        />
+        <small
+            class="ng-dirty ng-invalid"
+            *ngIf="submitted && !user.fullname"
+            >El nombre es Requerido.</small
+        >
+    </div>
+    
+    <div class="field">
+        <label for="fullname">Nombre</label>
+        <p-password [(ngModel)]="user.password">
+            <ng-template pTemplate="header">
+                <h6>Pick a password</h6>
+            </ng-template>
+            <ng-template pTemplate="footer">
+                <p-divider></p-divider>
+                <p class="mt-2">Suggestions</p>
+                <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                    <li>At least one lowercase</li>
+                    <li>At least one uppercase</li>
+                    <li>At least one numeric</li>
+                    <li>Minimum 8 characters</li>
+                </ul>
+            </ng-template>
+        </p-password>
+        <small
+            class="ng-dirty ng-invalid"
+            *ngIf="submitted && !user.fullname"
+            >El nombre es Requerido.</small
+        >
+    </div>
+    <div class="field">
+        <label for="description">email</label>
+        <input
+            id="email"
+            pInputText
+            [(ngModel)]="user.email"
+            required
+        >
+    </div>
+
+    <div class="field">
+        <label for="status">Estatus del Usuario</label>
+        <p-dropdown
+            id="status"
+            [options]="statuses"
+            optionLabel="label"
+            [(ngModel)]="user.activationStatus"
+            placeholder="Seleccione un Estatus"
+        >
+            <ng-template pTemplate="selectedItem">
+                <span
+                    *ngIf="user && user.activationStatus"
+                    [class]="
+                        'product-badge status-' +
+                        user.activationStatus.value.toLowerCase()
+                    "
+                    >{{ user.activationStatus.value }}</span
+                >
+            </ng-template>
+            <ng-template let-status pTemplate="status">
+                <span
+                    [class]="
+                        'product-badge status-' +
+                        status.value.toLowerCase()
+                    "
+                    >{{ status.label }}</span
+                >
+            </ng-template>
+        </p-dropdown>
+    </div>
+    <div class="formgrid grid">
+        <div class="field col">
+            <label for="price">Numero de telefono</label>
+            <p-inputNumber
+                id="price"
+                [(ngModel)]="user.phoneNum"
+                name="phoneNum"
+            ></p-inputNumber>
+        </div>
+    </div>
+</ng-template>
+<ng-template pTemplate="footer">
+    <button
+        pButton
+        pRipple
+        label="Cancel"
+        icon="pi pi-times"
+        class="p-button-text"
+        (click)="hideDialog()"
+    ></button>
+    <button
+        pButton
+        pRipple
+        label="Save"
+        icon="pi pi-check"
+        class="p-button-text"
+        (click)="saveProduct()"
+    ></button>
+</ng-template>

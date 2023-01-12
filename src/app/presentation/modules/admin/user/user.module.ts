@@ -17,14 +17,20 @@ import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { FileUploadModule } from 'primeng/fileupload';
 import { TableModule } from 'primeng/table';
+import { PasswordModule } from 'primeng/password';
+import { DividerModule } from 'primeng/divider';
+import { CreateUserComponent } from './components/create-user/create-user.component';
 
 
 @NgModule({
   declarations: [
-    UserComponent
+    UserComponent,
+    
+CreateUserComponent
   ],
   imports: [
     CommonModule,
+    PasswordModule,
     UserRoutingModule,
     TableModule,
     FileUploadModule,
@@ -40,6 +46,7 @@ import { TableModule } from 'primeng/table';
     RadioButtonModule,
     InputNumberModule,
     DialogModule,
+    DividerModule,
   ]
 })
 export class UserModule { }

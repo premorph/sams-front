@@ -1,51 +1,66 @@
-import { UserEntity } from '@Data/Repositories/user/entities/user-entity';
 import { Product } from '@Domain/model/Product.model';
 import { ProductService } from '@Presentation/core/services/product.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
+import { UserEntity } from '@Data/Repositories/user/entities';
+import { UserImplementationRepository } from '@Data/Repositories';
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss'],
-  providers:[MessageService]
+    selector: 'app-user',
+    templateUrl: './user.component.html',
+    styleUrls: ['./user.component.scss'],
+    providers: [MessageService, UserImplementationRepository],
 })
-export class UserComponent implements OnInit,OnDestroy {
+export class UserComponent implements OnInit, OnDestroy {
     productDialog: boolean = false;
     deleteProductDialog: boolean = false;
     deleteProductsDialog: boolean = false;
     products: Product[] = [];
     product: Product = {};
+    users:UserEntity[]=[]
     selectedProducts: Product[] = [];
     submitted: boolean = false;
     cols: any[] = [];
     statuses: any[] = [];
     rowsPerPageOptions = [5, 10, 20];
-    class!:string
-    user!:UserEntity
-    constructor(private productService: ProductService, private messageService: MessageService) { }
-      ngOnDestroy(): void {
-          this.class="fadeout animation-duration-500"
-
-      }
+    class!: string;
+    user: UserEntity = {
+        id: '',
+        fullname: '',
+        email: '',
+        phoneNum: '',
+        profilePicture: '',
+        activationStatus: undefined,
+        password: '',
+    };
+    constructor(
+        private productService: ProductService,
+        private messageService: MessageService,
+        private _userService: UserImplementationRepository
+    ) {}
+    ngOnDestroy(): void {
+        this.class = 'fadeout animation-duration-500';
+    }
 
     ngOnInit() {
-      this.class="fadein animation-duration-500"
-        this.productService.getProducts().then(data => this.products = data);
+        this.class = 'fadein animation-duration-500';
+        this.productService
+            .getProducts()
+            .then((data) => (this.products = data));
 
         this.cols = [
             { field: 'product', header: 'Product' },
             { field: 'price', header: 'Price' },
             { field: 'category', header: 'Category' },
             { field: 'rating', header: 'Reviews' },
-            { field: 'inventoryStatus', header: 'Status' }
+            { field: 'inventoryStatus', header: 'Status' },
         ];
 
         this.statuses = [
             { label: 'Activo', value: 'Activo' },
             { label: 'Inactivo', value: 'Inactivo' },
-            { label: 'Bloqueado', value: 'Bloqueado' }
+            { label: 'Bloqueado', value: 'Bloqueado' },
         ];
     }
 
@@ -71,15 +86,29 @@ export class UserComponent implements OnInit,OnDestroy {
 
     confirmDeleteSelected() {
         this.deleteProductsDialog = false;
-        this.products = this.products.filter(val => !this.selectedProducts.includes(val));
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
+        this.products = this.products.filter(
+            (val) => !this.selectedProducts.includes(val)
+        );
+        this.messageService.add({
+            severity: 'success',
+            summary: 'Successful',
+            detail: 'Products Deleted',
+            life: 3000,
+        });
         this.selectedProducts = [];
     }
 
     confirmDelete() {
         this.deleteProductDialog = false;
-        this.products = this.products.filter(val => val.id !== this.product.id);
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
+        this.products = this.products.filter(
+            (val) => val.id !== this.product.id
+        );
+        this.messageService.add({
+            severity: 'success',
+            summary: 'Successful',
+            detail: 'Product Deleted',
+            life: 3000,
+        });
         this.product = {};
     }
 
@@ -90,21 +119,39 @@ export class UserComponent implements OnInit,OnDestroy {
 
     saveProduct() {
         this.submitted = true;
+        
 
-        if (this.product.name?.trim()) {
-            if (this.product.id) {
+
+
+        
+        if (this.user.fullname?.trim()) {
+            if (this.user.id) {
                 // @ts-ignore
-                this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value : this.product.inventoryStatus;
-                this.products[this.findIndexById(this.product.id)] = this.product;
-                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
+                this.user.activationStatus = this.user.activationStatus
+                    .value
+                    ? this.user.activationStatus.value
+                    : this.user.activationStatus;
+                this.users[this.findIndexById(this.user.id)] =
+                    this.user;
+                this.messageService.add({
+                    severity: 'success',
+                    summary: 'Successful',
+                    detail: 'User Updated',
+                    life: 3000,
+                });
             } else {
-                this.product.id = this.createId();
-                this.product.code = this.createId();
-                this.product.image = 'product-placeholder.svg';
+                this.user.profilePicture = 'product-placeholder.svg';
                 // @ts-ignore
-                this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'INSTOCK';
-                this.products.push(this.product);
-                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
+                this.user.activationStatus = this.user.activationStatus
+                    ? this.user.activationStatus.value
+                    : 'ACTIVO';
+                this.users.push(this.user);
+                this.messageService.add({
+                    severity: 'success',
+                    summary: 'Successful',
+                    detail: 'Product Created',
+                    life: 3000,
+                });
             }
 
             this.products = [...this.products];
@@ -127,7 +174,8 @@ export class UserComponent implements OnInit,OnDestroy {
 
     createId(): string {
         let id = '';
-        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        const chars =
+            'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         for (let i = 0; i < 5; i++) {
             id += chars.charAt(Math.floor(Math.random() * chars.length));
         }
@@ -135,6 +183,9 @@ export class UserComponent implements OnInit,OnDestroy {
     }
 
     onGlobalFilter(table: Table, event: Event) {
-        table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
+        table.filterGlobal(
+            (event.target as HTMLInputElement).value,
+            'contains'
+        );
     }
-  }
+}

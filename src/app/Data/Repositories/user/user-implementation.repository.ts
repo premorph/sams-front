@@ -8,9 +8,7 @@ import { UserRepository } from '@Domain/repositories/user.repository';
 import { UserImplementationRepositoryMapper } from './mappers/user-repository.mapper';
 import { UserEntity } from './entities/user-entity';
 import { environment } from "src/environments/environment"
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class UserImplementationRepository extends UserRepository {
   baseUrl=environment.baseUrl
   userMapper = new UserImplementationRepositoryMapper();
