@@ -38,6 +38,12 @@ import { AppLayoutComponent } from '@Presentation/layout/app.layout.component';
                                 import(
                                     '@Presentation/modules/admin/user'
                                 ).then((m) => m.UserModule),
+                        },{
+                            path: 'cash',
+                            loadChildren: () =>
+                                import(
+                                    '@Presentation/modules/cash/'
+                                ).then((m) => m.CashModule),
                         },
                     ],
                 },
