@@ -3,8 +3,10 @@ import { UserEntity } from '@Data/Repositories/user/entities';
 import { Product } from '@Domain/model/Product.model';
 import { IBalance } from '@Presentation/core/interfaces/balance.interface';
 import { ProductService } from '@Presentation/core/services/product.service';
-import { MessageService } from 'primeng/api';
+import { MessageService, MenuItem } from 'primeng/api';
 import { Table } from 'primeng/table';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-balance',
@@ -13,11 +15,12 @@ import { Table } from 'primeng/table';
   providers:[MessageService]
 })
 export class BalanceComponent {
-  balanceDialog:boolean=false;
+  balanceDialog:boolean=true;
   productDialog: boolean = false;
   deleteProductDialog: boolean = false;
   deleteProductsDialog: boolean = false;
-
+  items!: MenuItem[];
+  subscription!: Subscription;
   balance:IBalance={
       date: '',
       amount:0 ,
@@ -36,13 +39,6 @@ export class BalanceComponent {
       DNI: '',
       obsvervation: ''
   }
-
-
-
-
-
-
-
   products: Product[] = [];
   product: Product = {};
   users:UserEntity[]=[]
@@ -65,6 +61,7 @@ export class BalanceComponent {
   constructor(
       private productService: ProductService,
       private messageService: MessageService,
+      private navigate:Router
   ) {
 
   }
@@ -91,12 +88,32 @@ export class BalanceComponent {
           { label: 'Inactivo', value: 'Inactivo' },
           { label: 'Bloqueado', value: 'Bloqueado' },
       ];
+      this.items = [{
+                label: 'Personal',
+                routerLink: 'personal'
+            },
+            {
+                label: 'Beneficiario',
+                routerLink: 'beneficiary'
+            },
+            {
+                label: 'Pago',
+                routerLink: 'payment'
+            },
+            {
+                label: 'Confirmacion',
+                routerLink: 'confirmation'
+            }
+        ];
+
+            this.messageService.add({severity:'success', summary:'Order submitted'       });
   }
 
   openNew() {
       this.product = {};
       this.submitted = false;
       this.balanceDialog = true;
+      this.navigate.navigate(['/cash/balance/personal'])
   }
 
   deleteSelectedProducts() {

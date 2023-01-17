@@ -24,12 +24,12 @@
         "paths": {
             "@Presentation/*":["src/app/presentation/*"],
             "@Domain/*":["src/app/domain/*"],
-            "@Data/*":["src/app/data/*"],
+            "@Data/*":["src/app/Data/*"],
             "@Core/*":["src/app/presentation/core/*"],
             "@Base/*":["src/app/base/*"]
           },
     },
-    
+
     "angularCompilerOptions": {
         "enableI18nLegacyMessageIdFormat": false,
         "strictInjectionParameters": true,

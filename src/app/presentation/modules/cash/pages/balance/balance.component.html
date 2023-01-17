@@ -67,41 +67,31 @@
             </p-table>
         </div>
 
-        <p-dialog [(visible)]="balanceDialog" [style]="{width: '50%'}" header="Balance Details" [modal]="true" class="p-fluid">
-        <ng-template pTemplate="content">
-            <div class="field">
-                <label for="name">Fecha de compra</label>
-                <p-calendar  id="name" formControlName="date" autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !balance.date }"/>
-                <small class="ng-dirty ng-invalid" *ngIf="submitted && !balance.date">Name is required.</small>
-            </div>
-            <div class="field">
-                <label for="amount">Monto</label>
-                <p-inputNumber id="amount" name="amount" [(ngModel)]="balance.amount" mode="decimal"></p-inputNumber>
-            </div>
-            <div class="field">
-                <label for="amount">Tasa</label>
-                <p-inputNumber [disabled]=true id="rate" name="rate" [(ngModel)]="balance.rate" mode="decimal"></p-inputNumber>
-            </div>
-            <div class="field">
-                <label for="bs">Monto en Bolivares</label>
-                <p-inputNumber id="bs" [(ngModel)]="balance.bs" mode="decimal"></p-inputNumber>
-            </div>
-            <div class="field">
-                <div class="formgrid grid">
-                    
+        <p-dialog [(visible)]="balanceDialog" [style]="{width: '60%'}" header="Balance Details" [modal]="true" class="p-fluid">
+        <!-- <ng-template pTemplate="content">
+            <div class="formgrid grid">
+                <div class="field col-6">
+                    <label for="name">Fecha de compra</label>
+                    <p-calendar  id="name" formControlName="date" autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !balance.date }"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !balance.date">Name is required.</small>
+                </div>
+                <div class="field col-6">
+                    <label for="amount">Monto</label>
+                    <p-inputNumber id="amount" name="amount" [(ngModel)]="balance.amount" mode="decimal"></p-inputNumber>
+                </div>
+                <div class="field col-6">
+                    <label for="amount">Tasa</label>
+                    <p-inputNumber [disabled]=true id="rate" name="rate" [(ngModel)]="balance.rate" mode="decimal"></p-inputNumber>
+                </div>
+                <div class="field col-6">
+                    <label for="bs">Monto en Bolivares</label>
+                    <p-inputNumber id="bs" [(ngModel)]="balance.bs" mode="decimal"></p-inputNumber>
                 </div>
             </div>
-            <div class="field">
-                <label class="mb-3">Category</label>
-                <div class="formgrid grid">
-                    
-                </div>
-            </div>
-        
             <div class="formgrid grid">
                 <div class="field col">
                     <label for="price">Price</label>
-                    
+
                 </div>
                 <div class="field col">
                     <label for="quantity">Quantity</label>
@@ -112,11 +102,17 @@
                 <textarea id="description" pInputTextarea formControlName="observation" required rows="3" cols="20"></textarea>
             </div>
         </ng-template>
-        
+
         <ng-template pTemplate="footer">
-            <!-- <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-            <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button> -->
-        </ng-template>
+            <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+            <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
+        </ng-template> -->
+
+        <div class="card">
+            <p-toast></p-toast>
+            <p-steps [model]="items" [readonly]="true"></p-steps>
+        </div>
+        <router-outlet></router-outlet>
 
         </p-dialog>
 

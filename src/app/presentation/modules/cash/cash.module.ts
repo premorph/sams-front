@@ -17,6 +17,8 @@ import { RatingModule } from 'primeng/rating';
 import { ToastModule } from 'primeng/toast';
 import { CashFormComponent } from './components/cash-form/cash-form.component';
 import { CalendarModule } from 'primeng/calendar';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { StepsModule } from 'primeng/steps';
 
 
 @NgModule({
@@ -39,7 +41,9 @@ import { CalendarModule } from 'primeng/calendar';
     RatingModule,
     ToastModule,
     ReactiveFormsModule,
-    CalendarModule
+    CalendarModule,
+    InputTextareaModule,
+    StepsModule
   ]
 })
 export class CashModule { }
