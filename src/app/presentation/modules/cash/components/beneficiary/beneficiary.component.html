@@ -1,1 +1,34 @@
-<p>beneficiary works!</p>
+<p-toast class="top-left"></p-toast>
+<div class="stepsdemo-content fadeinright animation-duration-200">
+    <p-card>
+        <ng-template pTemplate="content">
+            <div class=" formgrid " class="field">
+                    <label for="firstname">Beneficiario</label>
+                     <input mode="decimal" #amount="ngModel" id="firstname" type="text" [(ngModel)]="balanceRepository.paymentInformation.beneficiary" pInputText [required]="true" pInputText  [ngClass]="{'ng-dirty': (amount.invalid && submitted) || (amount.dirty && amount.invalid)}"/>
+                    <small *ngIf="(amount.invalid && submitted) || (amount.dirty && amount.invalid)" class="p-error fadein">El monto es requerido.</small>
+                </div>
+                <div class="field">
+                    <label for="lastname">Banco del beneficiario</label>
+                    <input #lastname="ngModel" id="lastname" type="text" required pInputText [(ngModel)]="balanceRepository.paymentInformation.bankTo" [ngClass]="{'ng-dirty': (lastname.invalid && submitted) || (lastname.dirty && lastname.invalid)}">
+                    <small class="p-error fadein" *ngIf="(lastname.invalid && submitted )|| (lastname.dirty && lastname.invalid)">El banco es requerido.</small>
+                </div>
+                <div class="field">
+                    <label for="age">Numero de cuenta del beneficiario</label>
+                    <p-inputMask mask="9999-9999-9999-9999" placeholder="9999-9999-9999-9999" #accountNumberFrom="ngModel" id="age" [required]="true"  [(ngModel)]="balanceRepository.paymentInformation.accountNumberTo" [ngClass]="{'ng-dirty': (accountNumberFrom.invalid && submitted) || (accountNumberFrom.dirty && accountNumberFrom.invalid)}"/>
+                    <small class="p-error fadein" *ngIf="(accountNumberFrom.invalid && submitted) || (accountNumberFrom.dirty && accountNumberFrom.invalid)">el numero de cuenta es requerido.</small>
+                </div>
+                <div class="field">
+                    <label for="age" >RIF/ Cedula</label><br>
+                    <small style="color: rgb(63, 61, 61);">Por favor recordar iniciar con V, j, de ser un numero de cedula iniciar con C.</small>
+                    <input mode="decimal" #DNI="ngModel" id="bs" type="text" [required]="true" pInputText [(ngModel)]="balanceRepository.paymentInformation.DNI" [ngClass]="{'ng-dirty': (DNI.invalid && submitted) || (DNI.dirty && DNI.invalid) || (DNI.touched)}"/>
+                    <small class="p-error fadein " *ngIf="(DNI.invalid && submitted) || (DNI.dirty && DNI.invalid)">El documento es necesario!.</small>
+                </div>
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <div class="grid grid-nogutter justify-content-end">
+                <p-button label="Volver" (onClick)="lastPage()" icon="pi pi-angle-left" iconPos="left"></p-button>
+                <p-button label="Siguiente" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"></p-button>
+            </div>
+        </ng-template>
+    </p-card>
+</div>

@@ -1,1 +1,23 @@
-<p>confirmation works!</p>
+<div class="fadeinright animation-duration-200">
+    <p-card>
+        <ng-template pTemplate="content">
+            <div class="formgrid" class="field"></div>
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <div class="grid grid-nogutter justify-content-end">
+                <p-button
+                    label="Volver"
+                    (onClick)="lastPage()"
+                    icon="pi pi-angle-left"
+                    iconPos="left"
+                ></p-button>
+                <p-button
+                    label="Siguiente"
+                    (onClick)="save()"
+                    icon="pi pi-angle-right"
+                    iconPos="right"
+                ></p-button>
+            </div>
+        </ng-template>
+    </p-card>
+</div>

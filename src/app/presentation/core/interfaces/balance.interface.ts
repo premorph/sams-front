@@ -1,14 +1,14 @@
 export interface IBalance {
-    date?: string; 
+    date?: string;
     amount?:number;
-    rate?:number; 
+    rate?:number;
     bs?:number;
     boughtFrom?: string;
     datePay?:string;
     bankFrom?:string;
     company?:string;
     accountNumberFrom?:string;
-    ref?:number;
+    ref?:string;
     note?:string;
     beneficiary?:string;
     bankTo?:string;

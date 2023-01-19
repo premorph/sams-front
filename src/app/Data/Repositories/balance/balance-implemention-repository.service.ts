@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 
 @Injectable()
 export class BalanceImplementionRepository {
-    paymentInformation:IBalance={
+  public  paymentInformation:IBalance={
         date: '',
         amount:0 ,
         rate:0 ,
@@ -14,7 +14,7 @@ export class BalanceImplementionRepository {
         bankFrom: '',
         company: '',
         accountNumberFrom: '',
-        ref: 0,
+        ref: '',
         note: '',
         beneficiary: '',
         bankTo: '',

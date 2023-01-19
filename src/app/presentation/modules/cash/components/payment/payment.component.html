@@ -1,1 +1,39 @@
-<p>payment works!</p>
+<p-toast class="top-left"></p-toast>
+
+<div class="fadeinright animation-duration-200">
+    <p-card>
+        <ng-template pTemplate="content">
+            <div class=" formgrid " class="field">
+                    <label for="firstname">Fecha de Pago</label>
+                     <p-calendar mode="decimal" #datepay="ngModel" id="firstname"  [(ngModel)]="balanceRepository.paymentInformation.datePay"  [required]="true"   [ngClass]="{'ng-dirty': (datepay.invalid && submitted) || (datepay.dirty && datepay.invalid) || (datepay.touched)}"/>
+                    <small *ngIf="(datepay.invalid && submitted) || (datepay.dirty && datepay.invalid)" class="p-error fadein">La fecha de pago es requerida.</small>
+                </div>
+                <div class="field">
+                    <label for="ref">Referencia</label>
+                    <input #ref="ngModel" id="ref" type="text" required pInputText [(ngModel)]="balanceRepository.paymentInformation.ref" [ngClass]="{'ng-dirty': (ref.invalid && submitted) || (ref.dirty && ref.invalid)}">
+                    <small class="p-error fadein" *ngIf="(ref.invalid && submitted )|| (ref.dirty && ref.invalid)">La referencia es requerida.</small>
+                </div>
+                <div class=" form grid " class="field">
+                    <label for="firstname">Monto en dolares</label>
+                     <p-inputNumber mode="decimal" #amount="ngModel" id="firstname"  [(ngModel)]="balanceRepository.paymentInformation.amount" [required]="true"   [ngClass]="{'ng-dirty': (amount.invalid && submitted) || (amount.dirty && amount.invalid)}"/>
+                    <small *ngIf="(amount.invalid && submitted) || (amount.dirty && amount.invalid)" class="p-error fadein">El monto es requerido.</small>
+                </div>
+                <div class="field">
+                    <label for="age">Monto en bolivares</label>
+                    <p-inputNumber mode="decimal" #bs="ngModel" id="bs"  [required]="true"  [(ngModel)]="balanceRepository.paymentInformation.bs" [ngClass]="{'ng-dirty': (bs.invalid && submitted) || (bs.dirty && bs.invalid)}"/>
+                    <small class="p-error fadein " *ngIf="(bs.invalid && submitted) || (bs.dirty && bs.invalid)">El monto en bolivares es necesario!.</small>
+                </div>
+                <div class="field">
+                    <label for="lastname">Nota</label>
+                    <input #note="ngModel" id="lastname" type="text" required pInputText [(ngModel)]="balanceRepository.paymentInformation.note" [ngClass]="{'ng-dirty': (note.invalid && submitted) || (note.dirty && note.invalid) || (note.touched)}">
+                    <small class="p-error fadein" *ngIf="(note.invalid && submitted )|| (note.dirty && note.invalid)">El banco es requerido.</small>
+                </div>
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <div class="grid grid-nogutter justify-content-end">
+                <p-button label="Volver" (onClick)="lastPage()" icon="pi pi-angle-left" iconPos="left"></p-button>
+                <p-button label="Siguiente" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"></p-button>
+            </div>
+        </ng-template>
+    </p-card>
+</div>

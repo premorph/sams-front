@@ -31,7 +31,7 @@ export class BalanceComponent {
       bankFrom: '',
       company: '',
       accountNumberFrom: '',
-      ref: 0,
+      ref: '',
       note: '',
       beneficiary: '',
       bankTo: '',
