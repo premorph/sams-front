@@ -43,7 +43,7 @@ export class AppMenuComponent implements OnInit {
                 label: 'Flujo de Caja',
                 items: [
                     { label: 'Historial de cambios', icon: 'pi pi-fw pi-cart-plus', routerLink: ['/cash/balance'] },
-                    { label: 'cambios', icon: 'pi pi-fw pi-dollar', routerLink: ['/cash/flow'] },
+                    { label: 'Balance Personal', icon: 'pi pi-fw pi-dollar', routerLink: ['/cash/flow'] },
                 ]
             },
 

@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
   providers:[MessageService]
 })
 export class BalanceComponent {
-  balanceDialog:boolean=true;
+  balanceDialog:boolean=false;
   productDialog: boolean = false;
   deleteProductDialog: boolean = false;
   deleteProductsDialog: boolean = false;
@@ -88,6 +88,7 @@ export class BalanceComponent {
           { label: 'Inactivo', value: 'Inactivo' },
           { label: 'Bloqueado', value: 'Bloqueado' },
       ];
+
       this.items = [{
                 label: 'Personal',
                 routerLink: 'personal'

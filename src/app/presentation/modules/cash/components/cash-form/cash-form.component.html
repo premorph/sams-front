@@ -1,0 +1,205 @@
+<p-card>
+    <p-toast></p-toast>
+    <ng-template pTemplate="content">
+        <h4 style="top: -50%;">Informacion de comprador</h4>
+        <div class="formgroup card grid">
+            <div class="field col-4 ">
+                <label for="firstname">Fecha</label>
+                <p-calendar #date="ngModel" id="firstname" [(ngModel)]="flow.date" [showIcon]="true" [required]="true"
+                    [ngClass]="{
+                    'ng-dirty':
+                        (date.invalid && submitted) ||
+                        (date.dirty && date.invalid) || date.touched
+                }" />
+                <small *ngIf="
+                    (date.invalid && submitted) || (date.dirty && date.invalid)
+                " class="p-error fadein">La fecha es requerida.</small>
+            </div>
+            <div class="field col-4">
+                <label for="Company">Compañia</label>
+                <input #Company="ngModel" id="company" type="text" required pInputText [(ngModel)]="flow.company"
+                    [ngClass]="{
+                    'ng-dirty':
+                        (Company.invalid && submitted) ||
+                        (Company.dirty && Company.invalid) || Company.touched
+                }" />
+
+                <small class="p-error fadein" *ngIf="
+                    (Company.invalid && submitted) ||
+                    (Company.dirty && Company.invalid)
+                ">La compañia es requerida.</small>
+
+            </div>
+            <div class="field  col-4">
+                <label for="store">Tienda</label><br />
+                <input #store="ngModel" id="store" type="text" [required]="true" pInputText [(ngModel)]="flow.store"
+                    [ngClass]="{
+                    'ng-dirty':
+                        (store.invalid && submitted) ||
+                        (store.dirty && store.invalid) ||
+                        store.touched
+                }" />
+
+                <small class="p-error fadein" *ngIf="
+                    (store.invalid && submitted) ||
+                    (store.dirty && store.invalid)
+                ">La tienda es necesaria!</small>
+            </div>
+        </div>
+        <h4>Informacion de Cliente</h4>
+        <div class="formgroup card grid">
+            <div class="field  col-3">
+                <label for="Client">Cliente</label><br />
+                <input #Client="ngModel" id="Client" type="text" [required]="true" pInputText [(ngModel)]="flow.client"
+                    [ngClass]="{
+                    'ng-dirty':
+                        (Client.invalid && submitted) ||
+                        (Client.dirty && Client.invalid) ||
+                        Client.touched
+                }" />
+
+                <small class="p-error fadein" *ngIf="
+                    (Client.invalid && submitted) ||
+                    (Client.dirty && Client.invalid)
+                ">El Cliente es necesario!</small>
+            </div>
+            <div class="field  col-3">
+                <label for="period">Periodo</label><br />
+                <input #period="ngModel" id="period" type="text" [required]="true" pInputText [(ngModel)]="flow.period"
+                    [ngClass]="{
+                    'ng-dirty':
+                        (period.invalid && submitted) ||
+                        (period.dirty && period.invalid) ||
+                        period.touched
+                }" />
+
+                <small class="p-error fadein" *ngIf="
+                    (period.invalid && submitted) ||
+                    (period.dirty && period.invalid)
+                ">El periodo es necesario!</small>
+            </div>
+            <div class="field col-6">
+                <label for="concept">Concepto</label><br />
+                <input #concept="ngModel" id="concept" type="text" [required]="true" pInputText
+                    [(ngModel)]="flow.concept" [ngClass]="{
+                    'ng-dirty':
+                        (concept.invalid && submitted) ||
+                        (concept.dirty && concept.invalid) ||
+                        concept.touched
+                }" />
+
+                <small class="p-error fadein" *ngIf="
+                    (concept.invalid && submitted) ||
+                    (concept.dirty && concept.invalid)
+                ">El concepto es necesario!</small>
+            </div>
+        </div>
+        <h4>Informacion de Beneficiario</h4>
+        <div class="formgroup card grid">
+            <div class="field  col-4">
+                <label for="beneficiary">Beneficiario</label><br />
+                <input #beneficiary="ngModel" id="beneficiary" type="text" [required]="true" pInputText
+                    [(ngModel)]="flow.beneficiary" [ngClass]="{
+                    'ng-dirty':
+                        (beneficiary.invalid && submitted) ||
+                        (beneficiary.dirty && beneficiary.invalid) ||
+                        beneficiary.touched
+                }" />
+
+                <small class="p-error fadein" *ngIf="
+                    (beneficiary.invalid && submitted) ||
+                    (beneficiary.dirty && beneficiary.invalid)
+                ">El Beneficiario es necesario!</small>
+            </div>
+            <div class="field  col-4">
+                <label for="store">Banco</label><br />
+                <input #bank="ngModel" id="store" type="text" [required]="true" pInputText
+                    [(ngModel)]="flow.receivingbank" [ngClass]="{
+                    'ng-dirty':
+                        (bank.invalid && submitted) ||
+                        (bank.dirty && bank.invalid) ||
+                        bank.touched
+                }" />
+
+                <small class="p-error fadein" *ngIf="
+                    (bank.invalid && submitted) ||
+                    (bank.dirty && bank.invalid)
+                ">El banco es necesario!</small>
+            </div>
+            <div class="field  col-4">
+                <label for="account">Numero de Cuenta</label><br />
+                <input #account="ngModel" id="account" type="text" [required]="true" pInputText
+                    [(ngModel)]="flow.receivingaccount" [ngClass]="{
+                    'ng-dirty':
+                        (account.invalid && submitted) ||
+                        (account.dirty && account.invalid) ||
+                        account.touched
+                }" />
+
+                <small class="p-error fadein" *ngIf="
+                    (account.invalid && submitted) ||
+                    (account.dirty && account.invalid)
+                ">El numero de cuenta es necesario!</small>
+            </div>
+        </div>
+        <h4>Informacion de pago</h4>
+        <div class="formgroup card grid">
+            <div class="row">
+                <h5>Seleccione el tipo de transaccion</h5>
+                <div class="field col-6">
+                    <p-radioButton name="groupname" style="justify-content: center;" class="col-6" label="Credito"
+                        value="credit" [(ngModel)]="selectedValue"></p-radioButton>
+                    <p-radioButton name="groupname" class="col-6" label="Debito" value="debit"
+                        [(ngModel)]="selectedValue"></p-radioButton>
+                </div>
+            </div>
+            <div class="field fadein col-4">
+                <div *ngIf="selectedValue==='credit'">
+                    <label for="store">Monto</label><br />
+                    <input #store="ngModel" id="store" type="text" [required]="true" pInputText
+                        [(ngModel)]="flow.credit" [ngClass]="{
+                        'ng-dirty':
+                            (store.invalid && submitted) ||
+                            (store.dirty && store.invalid) ||
+                            store.touched
+                    }" />
+                    <small class="p-error fadein" *ngIf="
+                        (store.invalid && submitted) ||
+                        (store.dirty && store.invalid)
+                    ">La tienda es necesaria!</small>
+                </div>
+        <div *ngIf="selectedValue==='debit'">
+            <label for="store">Monto</label><br />
+            <input #store="ngModel" id="store" type="text" [required]="true" pInputText [(ngModel)]="flow.debit"
+                [ngClass]="{
+                    'ng-dirty':
+                        (store.invalid && submitted) ||
+                        (store.dirty && store.invalid) ||
+                        store.touched
+                }" />
+            <small class="p-error fadein" *ngIf="
+                    (store.invalid && submitted) ||
+                    (store.dirty && store.invalid)
+                ">La tienda es necesaria!</small>
+        </div>
+</div>
+        <div class="field col-4 ">
+            <label for="firstname">Fecha de Pago</label>
+            <p-calendar #datePay="ngModel" id="firstname" [(ngModel)]="flow.datePay" [showIcon]="true" [required]="true"
+                [ngClass]="{
+                        'ng-dirty':
+                            (datePay.invalid && submitted) ||
+                            (datePay.dirty && datePay.invalid) || datePay.touched
+                    }" />
+            <small *ngIf="
+                        (datePay.invalid && submitted) || (datePay.dirty && datePay.invalid)
+                    " class="p-error fadein">La fecha de pago es requerida.</small>
+        </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <div class="grid grid-nogutter justify-content-end">
+            <p-button (onClick)="save()"></p-button>
+        </div>
+    </ng-template>
+</p-card>

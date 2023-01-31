@@ -1,13 +1,13 @@
 export type ICash={
     id?:number;
-    date?:Date;
+    date?:string;
     company?:string;
     store?:string;
     beneficiary?:string;
     concept?:string;
     period?:string;
     client?:string;
-    datePay?:Date;
+    datePay?:string;
     receivingbank?:string;
     receivingaccount?:string;
     credit?:string;
