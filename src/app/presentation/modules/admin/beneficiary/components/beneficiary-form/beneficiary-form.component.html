@@ -2,7 +2,19 @@
     <ng-template pTemplate="content">
         <div class=" formgrid " class="field">
             <label for="firstname">Beneficiario</label>
-             <input mode="decimal" #amount="ngModel" id="firstname" type="text"  pInputText [required]="true" pInputText  [ngClass]="{'ng-dirty': (amount.invalid && submitted) || (amount.dirty && amount.invalid)}"/>
+             <input mode="decimal" #amount="ngModel" id="firstname" type="text" [(ngModel)]="beneficiary"  pInputText [required]="true" pInputText  [ngClass]="{'ng-dirty': (amount.invalid && submitted) || (amount.dirty && amount.invalid)}"/>
+            <small *ngIf="(amount.invalid && submitted) || (amount.dirty && amount.invalid)" class="p-error fadein">El monto es requerido.</small>
+        </div><div class=" formgrid " class="field">
+            <label for="firstname">Beneficiario</label>
+             <input mode="decimal" #amount="ngModel" id="firstname" type="text" [(ngModel)]="beneficiary"  pInputText [required]="true" pInputText  [ngClass]="{'ng-dirty': (amount.invalid && submitted) || (amount.dirty && amount.invalid)}"/>
+            <small *ngIf="(amount.invalid && submitted) || (amount.dirty && amount.invalid)" class="p-error fadein">El monto es requerido.</small>
+        </div><div class=" formgrid " class="field">
+            <label for="firstname">Beneficiario</label>
+             <input mode="decimal" #amount="ngModel" id="firstname" type="text" [(ngModel)]="beneficiary"  pInputText [required]="true" pInputText  [ngClass]="{'ng-dirty': (amount.invalid && submitted) || (amount.dirty && amount.invalid)}"/>
+            <small *ngIf="(amount.invalid && submitted) || (amount.dirty && amount.invalid)" class="p-error fadein">El monto es requerido.</small>
+        </div><div class=" formgrid " class="field">
+            <label for="firstname">Beneficiario</label>
+             <input mode="decimal" #amount="ngModel" id="firstname" type="text" [(ngModel)]="beneficiary"  pInputText [required]="true" pInputText  [ngClass]="{'ng-dirty': (amount.invalid && submitted) || (amount.dirty && amount.invalid)}"/>
             <small *ngIf="(amount.invalid && submitted) || (amount.dirty && amount.invalid)" class="p-error fadein">El monto es requerido.</small>
         </div>
     </ng-template>
