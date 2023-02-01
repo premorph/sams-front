@@ -7,10 +7,10 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./beneficiary.component.scss'],
   providers:[MessageService]
 })
-export class BeneficiaryComponent implements OnInit, OnDestroy {
-  addBeneficiarydialog:boolean=false
+export class BeneficiaryComponent implements OnInit {
+  public addBeneficiarydialog:boolean=false
 cols:{field:string,header:string}[]=[]
-  constructor(private messageService:MessageService){}
+  constructor(public messageService:MessageService){}
 ngOnInit(): void {
   this.cols = [
     { field: 'Name', header: 'Name' },
@@ -19,9 +19,6 @@ ngOnInit(): void {
     { field: 'Type', header: 'Type' },
     { field: 'IsActive', header: 'IsActive' },
 ];
-}
-ngOnDestroy(): void {
-  throw new Error('Method not implemented.');
 }
 new(){
 this.addBeneficiarydialog=true

@@ -2,20 +2,28 @@
     <ng-template pTemplate="content">
         <div class=" formgrid " class="field">
             <label for="firstname">Beneficiario</label>
-             <input mode="decimal" #amount="ngModel" id="firstname" type="text" [(ngModel)]="beneficiary"  pInputText [required]="true" pInputText  [ngClass]="{'ng-dirty': (amount.invalid && submitted) || (amount.dirty && amount.invalid)}"/>
-            <small *ngIf="(amount.invalid && submitted) || (amount.dirty && amount.invalid)" class="p-error fadein">El monto es requerido.</small>
+             <input #name="ngModel" id="firstname" type="text" [(ngModel)]="beneficiary.name"  pInputText [required]="true" pInputText  [ngClass]="{'ng-dirty': (name.invalid && submitted) || (name.dirty && name.invalid)}"/>
+            <small *ngIf="(name.invalid && submitted) || (name.dirty && name.invalid)" class="p-error fadein">El monto es requerido.</small>
         </div><div class=" formgrid " class="field">
-            <label for="firstname">Beneficiario</label>
-             <input mode="decimal" #amount="ngModel" id="firstname" type="text" [(ngModel)]="beneficiary"  pInputText [required]="true" pInputText  [ngClass]="{'ng-dirty': (amount.invalid && submitted) || (amount.dirty && amount.invalid)}"/>
-            <small *ngIf="(amount.invalid && submitted) || (amount.dirty && amount.invalid)" class="p-error fadein">El monto es requerido.</small>
+            <label for="firstname">Correo</label>
+             <input #email="ngModel" id="firstname" type="email" [(ngModel)]="beneficiary.email"  pInputText [required]="true" pInputText  [ngClass]="{'ng-dirty': (email.invalid && submitted) || (email.dirty && email.invalid)}"/>
+            <small *ngIf="(email.invalid && submitted) || (email.dirty && email.invalid)" class="p-error fadein">El monto es requerido.</small>
         </div><div class=" formgrid " class="field">
-            <label for="firstname">Beneficiario</label>
-             <input mode="decimal" #amount="ngModel" id="firstname" type="text" [(ngModel)]="beneficiary"  pInputText [required]="true" pInputText  [ngClass]="{'ng-dirty': (amount.invalid && submitted) || (amount.dirty && amount.invalid)}"/>
-            <small *ngIf="(amount.invalid && submitted) || (amount.dirty && amount.invalid)" class="p-error fadein">El monto es requerido.</small>
+            <label for="firstname">RIF/C.I</label>
+             <input #dni="ngModel" id="firstname" type="text" [(ngModel)]="beneficiary.dni"  pInputText [required]="true" pInputText  [ngClass]="{'ng-dirty': (dni.invalid && submitted) || (dni.dirty && dni.invalid)}"/>
+            <small *ngIf="(dni.invalid && submitted) || (dni.dirty && dni.invalid)" class="p-error fadein">El monto es requerido.</small>
         </div><div class=" formgrid " class="field">
-            <label for="firstname">Beneficiario</label>
-             <input mode="decimal" #amount="ngModel" id="firstname" type="text" [(ngModel)]="beneficiary"  pInputText [required]="true" pInputText  [ngClass]="{'ng-dirty': (amount.invalid && submitted) || (amount.dirty && amount.invalid)}"/>
-            <small *ngIf="(amount.invalid && submitted) || (amount.dirty && amount.invalid)" class="p-error fadein">El monto es requerido.</small>
+            <label for="firstname">Tipo</label>
+             <p-dropdown #type="ngModel" id="firstname" [(ngModel)]="beneficiary.type"  [required]="true"   [ngClass]="{'ng-dirty': (type.invalid && submitted) || (type.dirty && type.invalid)}"/>
+            <small *ngIf="(type.invalid && submitted) || (type.dirty && type.invalid)" class="p-error fadein">El monto es requerido.</small>
+        </div>
+        <div class=" formgrid " class="field">
+            <label for="firstname">Estado</label>
+             <p-dropdown #status="ngModel" id="firstname" [(ngModel)]="beneficiary.isActive"   [required]="true"   [ngClass]="{'ng-dirty': (status.invalid && submitted) || (status.dirty && status.invalid)}"/>
+            <small *ngIf="(status.invalid && submitted) || (status.dirty && status.invalid)" class="p-error fadein">El monto es requerido.</small>
+        </div>
+        <div class=" formgrid " class="field">
+             <p-button label="Guardar" (onClick)="save()" icon="pi pi-save"/>
         </div>
     </ng-template>
 </p-card>

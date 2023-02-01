@@ -16,6 +16,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { ToastModule } from 'primeng/toast';
+import { BankFormComponent } from './components/bank-form/bank-form.component';
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import { ToastModule } from 'primeng/toast';
     TableModule,
     ButtonModule,
     ToolbarModule,
-    InputTextModule, 
+    InputTextModule,
     InputNumberModule,
     RadioButtonModule,
     FormsModule,
@@ -39,6 +40,7 @@ import { ToastModule } from 'primeng/toast';
     ReactiveFormsModule,
     CalendarModule,
     InputTextareaModule,
+    BankFormComponent
   ]
 })
 export class BankModule { }

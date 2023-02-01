@@ -7,6 +7,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
+import { BeneficiaryComponent } from '../../pages/beneficiary/beneficiary.component';
 interface IBeneficiary {
     dni?: string;
     name?: string;
@@ -32,5 +33,20 @@ interface IBeneficiary {
 })
 export class BeneficiaryFormComponent {
     submitted: boolean = false;
+    formValid:boolean=false
     @Input() beneficiary: IBeneficiary = {};
+constructor(private dialogBeneficiary:BeneficiaryComponent){}
+    validate(beneficiary:IBeneficiary):boolean{
+        const value =  Object.entries(beneficiary)
+        this.formValid =(value.length!==4) ? false: true
+           return this.formValid
+       }
+    save(){
+    this.validate(this.beneficiary)
+    if(!this.formValid){
+
+    }
+    this.dialogBeneficiary.addBeneficiarydialog=false
+    this.dialogBeneficiary.messageService.add({severity:'success',detail:'registro exitoso',life:3000})
+    }
 }
