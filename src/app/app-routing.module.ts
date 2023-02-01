@@ -44,7 +44,21 @@ import { AppLayoutComponent } from '@Presentation/layout/app.layout.component';
                                 import(
                                     '@Presentation/modules/cash/'
                                 ).then((m) => m.CashModule),
+                        },{
+                            path: 'beneficiary',
+                            loadChildren: () =>
+                                import(
+                                    '@Presentation/modules/admin/beneficiary/'
+                                ).then((m) => m.BeneficiaryModule),
+                        },{
+                            path: 'bank',
+                            loadChildren: () =>
+                                import(
+                                    '@Presentation/modules/admin/bank'
+                                ).then((m) => m.BankModule),
                         },
+                { path: '**', redirectTo: '/notfound' },
+
                     ],
                 },
                 {path:'Oauth',loadChildren:()=>import('@Presentation/modules/auth').then(m=>m.AuthModule)},
