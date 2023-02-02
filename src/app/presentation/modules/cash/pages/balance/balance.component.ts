@@ -89,13 +89,13 @@ export class BalanceComponent {
           { label: 'Bloqueado', value: 'Bloqueado' },
       ];
 
-      this.items = [{
-                label: 'Personal',
-                routerLink: 'personal'
-            },
+      this.items = [
             {
                 label: 'Beneficiario',
                 routerLink: 'beneficiary'
+            },{
+                label: 'Personal',
+                routerLink: 'personal'
             },
             {
                 label: 'Pago',
@@ -114,7 +114,7 @@ export class BalanceComponent {
       this.product = {};
       this.submitted = false;
       this.balanceDialog = true;
-      this.navigate.navigate(['/cash/balance/personal'])
+      this.navigate.navigate(['/cash/balance/beneficiary'])
   }
 
   deleteSelectedProducts() {

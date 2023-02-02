@@ -41,7 +41,7 @@ this.navigate.navigate(['/cash/balance/confirmation'])
 
     }
      lastPage(){
-this.navigate.navigate(['/cash/balance/beneficiary'])
+this.navigate.navigate(['/cash/balance/personal'])
     }
 
 

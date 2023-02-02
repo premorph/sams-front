@@ -2,7 +2,7 @@
     <p-card>
         <ng-template pTemplate="content">
             <div class="field">
-                <label for="lastname">Empresa</label>
+                <label for="lastname">Empresa Pagadora</label>
                 <input #company="ngModel" id="lastname" type="text" required pInputText [(ngModel)]="balanceRepository.paymentInformation.company" [ngClass]="{'ng-dirty': (company.invalid && submitted) || (company.dirty && company.invalid) || (company.touched)}">
                 <small class="p-error fadein" *ngIf="(company.invalid && submitted )|| (company.dirty && company.invalid)">La empresa es requerida.</small>
             </div>
@@ -12,7 +12,7 @@
                 <small class="p-error fadein" *ngIf="(bougth.invalid && submitted )|| (bougth.dirty && bougth.invalid)">La empresa es requerida.</small>
             </div>
                 <div class="field">
-                    <label for="lastname">Banco</label>
+                    <label for="lastname">Banco Pagador</label>
                     <input #lastname="ngModel" id="lastname" type="text" required pInputText [(ngModel)]="balanceRepository.paymentInformation.bankFrom" [ngClass]="{'ng-dirty': (lastname.invalid && submitted) || (lastname.dirty && lastname.invalid)}">
                     <small class="p-error fadein" *ngIf="(lastname.invalid && submitted )|| (lastname.dirty && lastname.invalid)">El banco es requerido.</small>
                 </div>
@@ -24,6 +24,7 @@
         </ng-template>
         <ng-template pTemplate="footer">
             <div class="grid grid-nogutter justify-content-end">
+                <p-button label="Volver" (onClick)="lastPage()" icon="pi pi-angle-left" iconPos="left"></p-button>
                 <p-button label="Siguiente" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"></p-button>
             </div>
         </ng-template>

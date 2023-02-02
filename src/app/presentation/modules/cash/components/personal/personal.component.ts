@@ -29,9 +29,9 @@ export class PersonalComponent {
     submitted:boolean=false
     constructor(private navigate:Router, public balanceRepository:BalanceImplementionRepository,private messageService:MessageService){}
     nextPage(){
-        // if(form.invalid){
-        //     return this.messageService.add({})
-        // }
         this.navigate.navigate(['/cash/balance/beneficiary'])
     }
+    lastPage(){
+      this.navigate.navigate(['/cash/balance/beneficiary'])
+          }
 }

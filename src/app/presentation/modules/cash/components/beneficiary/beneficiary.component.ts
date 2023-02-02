@@ -44,9 +44,6 @@ export class BeneficiaryComponent {
         //         detail: 'Via MessageService',
         //     });
         // }
-        this.navigate.navigate(['/cash/balance/payment']);
-    }
-    lastPage() {
         this.navigate.navigate(['/cash/balance/personal']);
     }
 }
