@@ -31,6 +31,7 @@ export class AppMenuComponent implements OnInit {
                 items: [
                     { label: 'Control de Accesso', icon: 'pi pi-fw pi-users', routerLink: ['/AccessControl/'] },
                     { label: 'Usuarios', icon: 'pi pi-fw pi-cog', routerLink: ['/Control/'] },
+
                 ]
             },
             {
@@ -44,6 +45,8 @@ export class AppMenuComponent implements OnInit {
                 items: [
                     { label: 'Historial de cambios', icon: 'pi pi-fw pi-cart-plus', routerLink: ['/cash/balance'] },
                     { label: 'Balance Personal', icon: 'pi pi-fw pi-dollar', routerLink: ['/cash/flow'] },
+                    { label: 'Listado de Beneficiarios', icon: 'pi pi-fw pi-cog', routerLink: ['/beneficiary'] },
+                    { label: 'Bancos', icon: 'pi pi-fw pi-cog', routerLink: ['/bank/'] },
                 ]
             },
 

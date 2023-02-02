@@ -1,1 +1,25 @@
-<p>bank-form works!</p>
+<p-card>
+    <ng-template pTemplate="content">
+        <div class=" formgrid " class="field">
+            <label for="name">Nombre del banco</label>
+             <input #name="ngModel" id="name" type="text" [(ngModel)]="bank.name"  pInputText [required]="true" pInputText  [ngClass]="{'ng-dirty': (name.invalid && submitted) || (name.dirty && name.invalid)}"/>
+            <small *ngIf="(name.invalid && submitted) || (name.dirty && name.invalid)" class="p-error fadein">El monto es requerido.</small>
+        </div><div class=" formgrid " class="field">
+            <label for="accountNumber">Numero de cuenta</label>
+             <p-inputMask mask="9999-9999-9999-9999-99999" #accountNumber="ngModel" id="accountNumber" [(ngModel)]="bank.accountNumber"   [required]="true"  [ngClass]="{'ng-dirty': (accountNumber.invalid && submitted) || (accountNumber.dirty && accountNumber.invalid)}"/>
+            <small *ngIf="(accountNumber.invalid && submitted) || (accountNumber.dirty && accountNumber.invalid)" class="p-error fadein">El monto es requerido.</small>
+        </div><div class=" formgrid " class="field">
+            <label for="company">Beneficiario</label>
+            <p-dropdown #company="ngModel" id="company" type="text" [(ngModel)]="bank.companyId" [filter]="true"  [required]="true"   [ngClass]="{'ng-dirty': (company.invalid && submitted) || (company.dirty && company.invalid)}"/>
+            <small *ngIf="(company.invalid && submitted) || (company.dirty && company.invalid)" class="p-error fadein">El monto es requerido.</small>
+        </div>
+        <div class=" formgrid " class="field">
+            <label for="status">Estado</label>
+             <p-dropdown #status="ngModel" id="status" [(ngModel)]="bank.isActive"   [required]="true"   [ngClass]="{'ng-dirty': (status.invalid && submitted) || (status.dirty && status.invalid)}"/>
+            <small *ngIf="(status.invalid && submitted) || (status.dirty && status.invalid)" class="p-error fadein">El estatus es requerido.</small>
+        </div>
+        <div class=" formgrid " class="field">
+             <p-button label="Guardar" (onClick)="save()" icon="pi pi-save"/>
+        </div>
+    </ng-template>
+</p-card>

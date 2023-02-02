@@ -38,7 +38,7 @@ export class CashFormComponent {
     }
     validate(flow:ICash):boolean{
      const value =  Object.entries(flow)
-     const valid =(value.length!==13) ? false: true
+     const valid =(value.length!==12) ? false: true
         return valid
     }
     save(){
