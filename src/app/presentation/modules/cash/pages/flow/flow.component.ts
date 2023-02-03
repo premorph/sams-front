@@ -11,7 +11,7 @@ import { NgForm } from '@angular/forms';
     providers: [MessageService],
 })
 export class FlowComponent implements OnInit, OnDestroy{
-    addFlowDialog: boolean = true;
+    addFlowDialog: boolean = false;
     flowDialog: boolean = false;
     deleteProductDialog: boolean = false;
     deleteProductsDialog: boolean = false;

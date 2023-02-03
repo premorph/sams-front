@@ -18,7 +18,6 @@ const routes: Routes = [
             { path: 'personal', component: PersonalComponent },
         ],
     },
-    { path: '**', redirectTo: '/notfound' },
     { path: 'flow', component: FlowComponent },
 ];
 

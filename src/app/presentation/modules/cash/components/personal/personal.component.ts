@@ -29,7 +29,7 @@ export class PersonalComponent {
     submitted:boolean=false
     constructor(private navigate:Router, public balanceRepository:BalanceImplementionRepository,private messageService:MessageService){}
     nextPage(){
-        this.navigate.navigate(['/cash/balance/beneficiary'])
+        this.navigate.navigate(['/cash/balance/payment'])
     }
     lastPage(){
       this.navigate.navigate(['/cash/balance/beneficiary'])
