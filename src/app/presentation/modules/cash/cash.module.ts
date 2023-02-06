@@ -35,7 +35,8 @@ import { StepsModule } from 'primeng/steps';
     TableModule,
     ButtonModule,
     ToolbarModule,
-    InputTextModule, InputNumberModule,
+    InputTextModule,
+    InputNumberModule,
     RadioButtonModule,
     FormsModule,
     RatingModule,
@@ -43,7 +44,8 @@ import { StepsModule } from 'primeng/steps';
     ReactiveFormsModule,
     CalendarModule,
     InputTextareaModule,
-    StepsModule
+    StepsModule,
+    RadioButtonModule
   ]
 })
 export class CashModule { }

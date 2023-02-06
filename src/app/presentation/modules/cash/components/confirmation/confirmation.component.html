@@ -1,22 +1,82 @@
 <div class="fadeinright animation-duration-200">
     <p-card>
         <ng-template pTemplate="content">
-            <div class="formgrid" class="field"></div>
+            <h3>Resumen</h3>
+            <br />
+            <p for="">Beneficiario</p>
+            <div class="flex-initial flex align-items-center justify-content-center">
+                <div class="col">
+                    <label>Beneficiario receptor: <span class="font-bold">something</span></label>
+                </div>
+                <div class="col">
+                    <label>Banco Receptor: <span class="font-bold">something</span></label>
+                </div>
+                <div class="col">
+                    <label>RIF/CI: <span class="font-bold">something</span></label>
+                </div>
+                <div class="col">
+                    <label>Numero de Cuenta: <span class="font-bold">something</span></label>
+                </div>
+            </div>
+            <p for="">Empresa Pagadora</p>
+            <div class="flex-initial flex align-items-center justify-content-center">
+                <div class="col">
+                    <label>Empresa Pagadora: <span class="font-bold">something</span></label>
+                </div>
+                <div class="col">
+                    <label>Comprado A: <span class="font-bold">something</span></label>
+                </div>
+                <div class="col">
+                    <label>Banco Pagador: <span class="font-bold">something</span></label>
+                </div>
+                <div class="col">
+                    <label>Numero de Cuenta: <span class="font-bold">something</span></label>
+                </div>
+            </div>
+
+            <p for="">Pago</p>
+            <div class="flex-initial flex align-items-center justify-content-center">
+                <div class="col">
+                    <label>Fecha de Pago: <span class="font-bold">something</span></label>
+                </div>
+                <div class="col">
+                    <label>Referencia: <span class="font-bold">something</span></label>
+                </div>
+                <div class="col">
+                    <label>Monto en Dolares: <span class="font-bold">something</span></label>
+                </div>
+                <div class="col">
+                    <label>Monto en Bolivares: <span class="font-bold">something</span></label>
+                </div>
+                <div class="col">
+                    <label>Nota: <span class="font-bold">something</span></label>
+                </div>
+            </div>
+            <p for="">Imagenes</p>
+            <div class="formgird">
+                <div class="field">
+                    <label for="status">Estatus</label>
+                    <p-dropdown [options]="statues" id="status" [(ngModel)]="selected"
+                        placeholder="Seleccione el estatus" [required]="true" optionLabel="name"
+                        [showClear]="true"></p-dropdown>
+                </div>
+                <div class="formgird">
+                    <p-fileUpload name="demo[]" cancelLabel="cancelar" uploadLabel="Cargar" chooseLabel="Seleccionar" [customUpload]="true" (uploadHandler)="myUploader($event)" [multiple]="true" accept="image/*" [maxFileSize]="maxsize" >
+                        <ng-template>
+
+                        <ul *ngIf="uploadedFiles.length<5">
+                                <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+
+                        </ul>
+                    </ng-template>
+                </p-fileUpload>
+            </div>
+            </div>
         </ng-template>
         <ng-template pTemplate="footer">
             <div class="grid grid-nogutter justify-content-end">
-                <p-button
-                    label="Volver"
-                    (onClick)="lastPage()"
-                    icon="pi pi-angle-left"
-                    iconPos="left"
-                ></p-button>
-                <p-button
-                    label="Siguiente"
-                    (onClick)="save()"
-                    icon="pi pi-angle-right"
-                    iconPos="right"
-                ></p-button>
+                <p-button label="Volver" (onClick)="lastPage()" icon="pi pi-angle-left" iconPos="left"></p-button>
+                <p-button label="Siguiente" (onClick)="save()" icon="pi pi-angle-right" iconPos="right"></p-button>
             </div>
         </ng-template>
     </p-card>

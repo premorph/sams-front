@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { ICash } from '../../../../core/interfaces/cash.interface';
@@ -10,7 +10,7 @@ import { NgForm } from '@angular/forms';
     styleUrls: ['./flow.component.scss'],
     providers: [MessageService],
 })
-export class FlowComponent implements OnInit, OnDestroy{
+export class FlowComponent implements OnInit {
     addFlowDialog: boolean = false;
     flowDialog: boolean = false;
     deleteProductDialog: boolean = false;
@@ -26,9 +26,7 @@ export class FlowComponent implements OnInit, OnDestroy{
     rowsPerPageOptions = [5, 10, 20];
 
     constructor(private messageService: MessageService) {}
-    ngOnDestroy(): void {
-        throw new Error('Method not implemented.');
-    }
+
     ngOnInit(): void {
         this.cols = [
             { field: 'Fecha', header: 'Fecha' },

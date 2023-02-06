@@ -35,7 +35,7 @@ export class PaymentComponent {
   async  nextPage(){
     const condition = this.balanceRepository.paymentInformation
         if(condition.amount ==0 || condition.bs==0 || condition.note== '' || condition.datePay===null ){
-            return this.messageService.add({severity:'error', summary:'Todos los campos son necesarios'})
+            //return this.messageService.add({severity:'error', summary:'Todos los campos son necesarios'})
         }
 this.navigate.navigate(['/cash/balance/confirmation'])
 

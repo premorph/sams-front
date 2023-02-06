@@ -71,9 +71,9 @@ export class BalanceComponent {
 
   ngOnInit() {
       this.class = 'fadein animation-duration-500';
-      this.productService
-          .getProducts()
-          .then((data) => (this.products = data));
+    //   this.productService
+    //       .getProducts()
+    //       .then((data) => (this.products = data));
 
       this.cols = [
           { field: 'product', header: 'Product' },
@@ -163,50 +163,6 @@ export class BalanceComponent {
       this.productDialog = false;
       this.submitted = false;
   }
-
-  saveProduct() {
-      this.submitted = true;
-
-
-
-
-
-      if (this.user.fullname?.trim()) {
-          if (this.user.id) {
-              // @ts-ignore
-              this.user.activationStatus = this.user.activationStatus
-                  .value
-                  ? this.user.activationStatus.value
-                  : this.user.activationStatus;
-              this.users[this.findIndexById(this.user.id)] =
-                  this.user;
-              this.messageService.add({
-                  severity: 'success',
-                  summary: 'Successful',
-                  detail: 'User Updated',
-                  life: 3000,
-              });
-          } else {
-              this.user.profilePicture = 'product-placeholder.svg';
-              // @ts-ignore
-              this.user.activationStatus = this.user.activationStatus
-                  ? this.user.activationStatus.value
-                  : 'ACTIVO';
-              this.users.push(this.user);
-              this.messageService.add({
-                  severity: 'success',
-                  summary: 'Successful',
-                  detail: 'Product Created',
-                  life: 3000,
-              });
-          }
-
-          this.products = [...this.products];
-          this.productDialog = false;
-          this.product = {};
-      }
-  }
-
   findIndexById(id: string): number {
       let index = -1;
       for (let i = 0; i < this.products.length; i++) {
@@ -215,7 +171,6 @@ export class BalanceComponent {
               break;
           }
       }
-
       return index;
   }
 

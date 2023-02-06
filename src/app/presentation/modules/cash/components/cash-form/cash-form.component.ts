@@ -24,7 +24,7 @@ import {  RadioButtonModule } from 'primeng/radiobutton';
         InputTextModule,
         ButtonModule,
         ToastModule,
-        RadioButtonModule
+        RadioButtonModule,
     ],
     styleUrls: ['./cash-form.component.scss'],
     providers:[MessageService]

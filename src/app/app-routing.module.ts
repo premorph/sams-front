@@ -57,8 +57,6 @@ import { AppLayoutComponent } from '@Presentation/layout/app.layout.component';
                                     '@Presentation/modules/admin/bank'
                                 ).then((m) => m.BankModule),
                         },
-                { path: '**', redirectTo: '/notfound' },
-
                     ],
                 },
                 {path:'Oauth',loadChildren:()=>import('@Presentation/modules/auth').then(m=>m.AuthModule)},
